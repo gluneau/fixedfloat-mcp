@@ -22,12 +22,12 @@ interface AppConfig {
 // Default configuration
 const defaultConfig: AppConfig = {
   fixedFloat: {
-    apiKey: "YOUR_API_KEY",
-    apiSecret: "YOUR_API_SECRET"
+    apiKey: 'YOUR_API_KEY',
+    apiSecret: 'YOUR_API_SECRET',
   },
   server: {
-    name: "fixedfloat-mcp",
-    version: "1.0.0",
+    name: 'fixedfloat-mcp',
+    version: '1.0.0',
   },
   log: {
     logLevel: 'info',

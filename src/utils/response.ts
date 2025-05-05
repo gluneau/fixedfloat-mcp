@@ -64,7 +64,7 @@ export function errorResponse(message: string): Response {
 
 // Wrapper to adapt tool handlers to MCP SDK format
 export function adaptHandler<T>(
-  handler: (params: T) => Promise<Response>
+  handler: (params: T) => Promise<Response>,
 ): (params: T, extra: RequestHandlerExtra) => Promise<Response> {
   return async (params: T, extra: RequestHandlerExtra): Promise<Response> => {
     return await handler(params);

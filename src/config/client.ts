@@ -1,6 +1,8 @@
 // FixedFloat API client
-import fetch from 'node-fetch';
 import crypto from 'crypto';
+
+import fetch from 'node-fetch';
+
 import config from './index';
 
 const API_BASE_URL = 'https://ff.io/api/v2/';
@@ -29,13 +31,13 @@ class FixedFloatClient {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'X-API-KEY': this.apiKey,
-          'X-API-SIGN': signature
+          'X-API-SIGN': signature,
         },
-        body: jsonData
+        body: jsonData,
       });
 
-      const result = await response.json() as any;
-      
+      const result = (await response.json()) as any;
+
       if (result.code === 0) {
         return result.data as T;
       } else {
@@ -102,9 +104,6 @@ class FixedFloatClient {
 }
 
 // Create a client instance using the config
-const client = new FixedFloatClient(
-  config.fixedFloat.apiKey,
-  config.fixedFloat.apiSecret
-);
+const client = new FixedFloatClient(config.fixedFloat.apiKey, config.fixedFloat.apiSecret);
 
 export default client;

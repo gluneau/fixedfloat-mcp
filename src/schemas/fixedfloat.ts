@@ -1,5 +1,6 @@
 // FixedFloat-specific schemas
 import { z } from 'zod';
+
 import { exchangeTypeSchema, directionSchema, emergencyChoiceSchema } from './common';
 
 // Schema for get_currencies tool
@@ -15,7 +16,10 @@ export const getPriceSchema = z.object({
   ccies: z.boolean().optional().describe('Include currency availability list in response'),
   usd: z.boolean().optional().describe('Adjust amount in USD if limits exceeded'),
   refcode: z.string().optional().describe('Affiliate program code for earnings'),
-  afftax: z.number().optional().describe('Desired affiliate earnings as percentage of exchange amount')
+  afftax: z
+    .number()
+    .optional()
+    .describe('Desired affiliate earnings as percentage of exchange amount'),
 });
 
 // Schema for create_order tool
@@ -28,33 +32,38 @@ export const createOrderSchema = z.object({
   toAddress: z.string().describe('Destination address for funds'),
   tag: z.string().optional().describe('Memo or Destination Tag (if required)'),
   refcode: z.string().optional().describe('Affiliate program code for earnings'),
-  afftax: z.number().optional().describe('Desired affiliate earnings as percentage of exchange amount')
+  afftax: z
+    .number()
+    .optional()
+    .describe('Desired affiliate earnings as percentage of exchange amount'),
 });
 
 // Schema for get_order tool
 export const getOrderSchema = z.object({
   id: z.string().describe('Order ID'),
-  token: z.string().describe('Order security token from data.token')
+  token: z.string().describe('Order security token from data.token'),
 });
 
 // Schema for set_emergency_action tool
 export const setEmergencyActionSchema = z.object({
   id: z.string().describe('Order ID'),
   token: z.string().describe('Order security token from data.token'),
-  choice: emergencyChoiceSchema.describe('Action: EXCHANGE (continue at market rate) or REFUND (refund minus fee)'),
+  choice: emergencyChoiceSchema.describe(
+    'Action: EXCHANGE (continue at market rate) or REFUND (refund minus fee)',
+  ),
   address: z.string().optional().describe('Refund address (required if choice="REFUND")'),
-  tag: z.string().optional().describe('Memo or Destination Tag (if required)')
+  tag: z.string().optional().describe('Memo or Destination Tag (if required)'),
 });
 
 // Schema for set_email tool
 export const setEmailSchema = z.object({
   id: z.string().describe('Order ID'),
   token: z.string().describe('Order security token from data.token'),
-  email: z.string().email().describe('Email for notifications')
+  email: z.string().email().describe('Email for notifications'),
 });
 
 // Schema for get_qr_codes tool
 export const getQrCodesSchema = z.object({
   id: z.string().describe('Order ID'),
-  token: z.string().describe('Order security token from data.token')
+  token: z.string().describe('Order security token from data.token'),
 });

@@ -2,8 +2,9 @@
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { registerTools } from './tools';
+
 import config from './config';
+import { registerTools } from './tools';
 import logger from './utils/logger';
 
 const startServer = async () => {
@@ -18,9 +19,9 @@ const startServer = async () => {
   }
 
   // Create and configure the server
-  const server = new McpServer({ 
-    name: config.server.name, 
-    version: config.server.version 
+  const server = new McpServer({
+    name: config.server.name,
+    version: config.server.version,
   });
 
   // Register tools
@@ -29,7 +30,7 @@ const startServer = async () => {
   // Connect to the transport
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  
+
   logger.info('FixedFloat MCP Server started');
 };
 
