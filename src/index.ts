@@ -7,7 +7,7 @@ import config from './config';
 import { registerTools } from './tools';
 import logger from './utils/logger';
 
-const startServer = async () => {
+const startServer = async (): Promise<void> => {
   // Set log level
   logger.setLogLevel(config.log.logLevel);
 

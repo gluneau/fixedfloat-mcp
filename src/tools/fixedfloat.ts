@@ -1,8 +1,7 @@
 // FixedFloat tools implementation
 import client from '../config/client';
 import { handleError } from '../utils/error';
-import { Response } from '../utils/response';
-import { successJson, errorResponse } from '../utils/response';
+import { Response, successJson, errorResponse } from '../utils/response';
 
 // Get available currencies
 export async function getCurrencies(_params: Record<string, never>): Promise<Response> {

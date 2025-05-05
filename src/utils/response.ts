@@ -66,7 +66,7 @@ export function errorResponse(message: string): Response {
 export function adaptHandler<T>(
   handler: (params: T) => Promise<Response>,
 ): (params: T, extra: RequestHandlerExtra) => Promise<Response> {
-  return async (params: T, extra: RequestHandlerExtra): Promise<Response> => {
+  return async (params: T, _extra: RequestHandlerExtra): Promise<Response> => {
     return await handler(params);
   };
 }

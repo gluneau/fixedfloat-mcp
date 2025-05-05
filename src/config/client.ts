@@ -20,7 +20,7 @@ class FixedFloatClient {
     return crypto.createHmac('sha256', this.apiSecret).update(data).digest('hex');
   }
 
-  async request<T>(method: string, data: Record<string, any> = {}): Promise<T> {
+  async request<T>(method: string, data: Record<string, unknown> = {}): Promise<T> {
     const url = `${API_BASE_URL}${method}`;
     const jsonData = JSON.stringify(data);
     const signature = this.sign(jsonData);
@@ -36,7 +36,11 @@ class FixedFloatClient {
         body: jsonData,
       });
 
-      const result = (await response.json()) as any;
+      const result = (await response.json()) as {
+        code: number;
+        msg?: string;
+        data: unknown;
+      };
 
       if (result.code === 0) {
         return result.data as T;
@@ -48,7 +52,7 @@ class FixedFloatClient {
     }
   }
 
-  async getCurrencies() {
+  async getCurrencies(): Promise<unknown> {
     return this.request('ccies');
   }
 
@@ -62,7 +66,7 @@ class FixedFloatClient {
     usd?: boolean;
     refcode?: string;
     afftax?: number;
-  }) {
+  }): Promise<unknown> {
     return this.request('price', data);
   }
 
@@ -76,11 +80,11 @@ class FixedFloatClient {
     tag?: string;
     refcode?: string;
     afftax?: number;
-  }) {
+  }): Promise<unknown> {
     return this.request('create', data);
   }
 
-  async getOrder(data: { id: string; token: string }) {
+  async getOrder(data: { id: string; token: string }): Promise<unknown> {
     return this.request('order', data);
   }
 
@@ -90,15 +94,15 @@ class FixedFloatClient {
     choice: 'EXCHANGE' | 'REFUND';
     address?: string;
     tag?: string;
-  }) {
+  }): Promise<unknown> {
     return this.request('emergency', data);
   }
 
-  async setEmail(data: { id: string; token: string; email: string }) {
+  async setEmail(data: { id: string; token: string; email: string }): Promise<unknown> {
     return this.request('setEmail', data);
   }
 
-  async getQrCodes(data: { id: string; token: string }) {
+  async getQrCodes(data: { id: string; token: string }): Promise<unknown> {
     return this.request('qr', data);
   }
 }

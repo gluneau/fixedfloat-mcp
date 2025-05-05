@@ -5,7 +5,7 @@ import { z } from 'zod';
 import * as fixedFloatSchemas from './fixedfloat';
 
 // Helper function to extract the shape from a ZodObject
-function getZodShape<T extends z.ZodRawShape>(schema: z.ZodObject<T>) {
+function getZodShape<T extends z.ZodRawShape>(schema: z.ZodObject<T>): T {
   return schema._def.shape();
 }
 
