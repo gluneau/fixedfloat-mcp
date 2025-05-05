@@ -168,6 +168,9 @@ Once connected to an MCP client, you can ask questions like:
 - `npm run build` - Build the TypeScript project
 - `npm run start` - Start the server
 - `npm run inspector` - Launch with MCP Inspector for debugging
+- `npm run lint` - Run ESLint to check code quality
+- `npm run lint:fix` - Fix ESLint issues automatically
+- `npm run format` - Format code with Prettier
 
 ## License
 

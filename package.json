@@ -11,7 +11,10 @@
     "inspector": "npx @modelcontextprotocol/inspector dist/index.js",
     "build": "rimraf dist && tsc && shx chmod +x dist/index.js",
     "prepare": "npm run build",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "author": "gregory.luneau@gmail.com",
   "license": "ISC",
@@ -25,6 +28,13 @@
   "devDependencies": {
     "@types/node": "^22.13.8",
     "@types/node-fetch": "^2.6.9",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.1.0",
     "rimraf": "^5.0.5",
     "shx": "^0.3.4",
     "typescript": "^5.8.2"

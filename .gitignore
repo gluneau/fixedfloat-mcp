@@ -51,3 +51,8 @@ coverage/
 .tmp/
 temp/
 *.bak
+
+# ESLint and Prettier
+.eslintcache
+.prettierignore
+.prettierrc.json
