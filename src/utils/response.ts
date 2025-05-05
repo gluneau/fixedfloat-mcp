@@ -65,8 +65,10 @@ export function errorResponse(message: string): Response {
 // Wrapper to adapt tool handlers to MCP SDK format
 export function adaptHandler<T>(
   handler: (params: T) => Promise<Response>,
-): (params: T, extra: RequestHandlerExtra) => Promise<Response> {
-  return async (params: T, _extra: RequestHandlerExtra): Promise<Response> => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): (params: T, extra: RequestHandlerExtra<any, any>) => Promise<Response> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return async (params: T, _extra: RequestHandlerExtra<any, any>): Promise<Response> => {
     return await handler(params);
   };
 }
